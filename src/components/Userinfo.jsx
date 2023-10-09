@@ -1,7 +1,46 @@
 import React from 'react';
 import { Stack, Card, CardContent, Avatar, Typography } from '@mui/material';
-
-export default  function Userinfo() {
+import CustomCard from './CustomCard'
+/**
+ * {
+    "login": "elm-Saad",
+    "id": 128216930,
+    "node_id": "U_kgDOB6RvYg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/128216930?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/elm-Saad",
+    "html_url": "https://github.com/elm-Saad",
+    "followers_url": "https://api.github.com/users/elm-Saad/followers",
+    "following_url": "https://api.github.com/users/elm-Saad/following{/other_user}",
+    "gists_url": "https://api.github.com/users/elm-Saad/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/elm-Saad/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/elm-Saad/subscriptions",
+    "organizations_url": "https://api.github.com/users/elm-Saad/orgs",
+    "repos_url": "https://api.github.com/users/elm-Saad/repos",
+    "events_url": "https://api.github.com/users/elm-Saad/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/elm-Saad/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Saad",
+    "company": null,
+    "blog": "",
+    "location": null,
+    "email": null,
+    "hireable": null,
+    "bio": null,
+    "twitter_username": "elm_saad",
+    "public_repos": 28,
+    "public_gists": 0,
+    "followers": 0,
+    "following": 1,
+    "created_at": "2023-03-18T08:25:11Z",
+    "updated_at": "2023-10-05T20:58:20Z"
+}
+ * 
+ * 
+ */
+export default  function Userinfo({githubData}) {
+    console.log(githubData)
   return (
     <div className="w-full flex justify-center">
       <Stack
@@ -15,12 +54,12 @@ export default  function Userinfo() {
           direction="column"
           alignItems="center"
           spacing={2}
-          sx={{ flex: '0 0 40%', maxWidth: '40%' }}
+          sx={{ flex: '0 0 20%', maxWidth: '20%' }}
         >
           <Avatar
             alt="User Avatar"
-            src="URL_TO_USER_AVATAR_IMAGE"
-            sx={{ width: '100px', height: '100px' }}
+            src={githubData.avatar_url}
+            sx={{ width: '200px', height: '200px' }}
           />
           <Typography variant="h6">Username</Typography>
           <Typography variant="body1">Other Data</Typography>
@@ -30,18 +69,10 @@ export default  function Userinfo() {
         <Stack
           direction="column"
           spacing={2}
-          sx={{ flex: '0 0 60%', maxWidth: '60%' }}
+          sx={{ flex: '0 0 80%', maxWidth: '80%' }}
         >
           {/* Repo Cards */}
-          <Card>
-            <CardContent>
-              <Typography variant="h6">Note_App</Typography>
-              <Typography variant="body1">
-                Public note app using JS and firebase
-              </Typography>
-              <Typography variant="body2">JavaScript</Typography>
-            </CardContent>
-          </Card>
+          <CustomCard />
           
           {/* Add more repo cards as needed */}
         </Stack>

@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-  <Box width="400px" sx={{ width: { xl: '1490px' } }} m="auto" className='bg-gray-100 min-h-screen'>
+  <Box width="400px" sx={{ width: { xl: '1490px' } }} m="auto" className='bg-gray-100 bg-opacity-50 min-h-screen'>
     <Navbar />
     <Home />
     <Footer />

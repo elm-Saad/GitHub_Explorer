@@ -7,9 +7,11 @@ export default function Result({loading,githubData}){
     return (
         <>
             {
-            loading?
-            <Loader/> :
-            <Userinfo/>
+            loading? <Loader/> : githubData?
+            <Userinfo
+                githubData={githubData}
+            />:''
+
             }
         </>
     )
