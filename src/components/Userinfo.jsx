@@ -1,5 +1,9 @@
 import React from 'react';
-import { Stack, Card, CardContent, Avatar, Typography } from '@mui/material';
+import { Stack, Grid,Button, Avatar, Typography } from '@mui/material'
+import IconButton from '@mui/material/IconButton';
+import PersonIcon from '@mui/icons-material/Person';
+import CodeIcon from '@mui/icons-material/Code';
+import Pagination from '@mui/material/Pagination'
 import CustomCard from './CustomCard'
 /**
  * {
@@ -40,6 +44,32 @@ import CustomCard from './CustomCard'
  * 
  */
 export default  function Userinfo({githubData}) {
+    const [repoData, setRepoData] = React.useState([]);
+    const [currentPage, setCurrentPage] = React.useState(1)
+    const repoPerPage = 6
+
+    const fetchData = async () => {
+        try {
+          const response = await fetch(githubData.repos_url)
+          const result = await response.json()
+          setRepoData(result)
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+    }
+    React.useEffect(() => {
+        fetchData();
+    }, []);
+
+    // Pagination
+    const indexOfLastRepo = currentPage * repoPerPage;
+    const indexOfFirstRepo = indexOfLastRepo - repoPerPage;
+    const currentRepos = repoData.slice(indexOfFirstRepo, indexOfLastRepo);
+
+    const paginate = (event, value) => {
+        setCurrentPage(value);
+    }
+
     console.log(githubData)
   return (
     <div className="w-full flex justify-center">
@@ -51,30 +81,79 @@ export default  function Userinfo({githubData}) {
       >
         {/* Left Stack */}
         <Stack
-          direction="column"
-          alignItems="center"
-          spacing={2}
-          sx={{ flex: '0 0 20%', maxWidth: '20%' }}
+            direction="column"
+            alignItems="center"
+            spacing={2}
+            sx={{ flex: '0 0 20%', maxWidth: '20%' }}
         >
-          <Avatar
-            alt="User Avatar"
-            src={githubData.avatar_url}
-            sx={{ width: '200px', height: '200px' }}
-          />
-          <Typography variant="h6">Username</Typography>
-          <Typography variant="body1">Other Data</Typography>
+            <Avatar alt={githubData.name} src={githubData.avatar_url} sx={{ width: '100%', height: 'auto', border:'3px solid white ' }} />
+            <Typography variant="h6" sx={{ fontWeight: 600, alignSelf: 'flex-start' }}>
+                {githubData.name}
+            </Typography>
+            <a
+                href={githubData.html_url}
+                target='_blank'
+                style={{ textDecoration: 'none', width: '100%',}}
+            >
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    sx={{
+                    width: '100%',
+                    backgroundColor: 'white',
+                    '&:hover': {
+                        backgroundColor: 'lightgray',
+                        borderColor: 'gray',
+                    },
+                    }}
+                >
+                    View Profile
+                </Button>
+            </a>
+            <Stack direction="row" alignItems="center" spacing={1}>
+                <IconButton size="small" sx={{ color: 'gray' }}>
+                    <PersonIcon fontSize="small" />
+                </IconButton>
+                <Typography variant="body2" sx={{ color: 'gray' }}>
+                    {githubData.followers} followers · {githubData.following} following
+                </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={1}>
+                <IconButton size="small" sx={{ color: 'gray' }}>
+                    <CodeIcon fontSize="small" />
+                </IconButton>
+                <Typography variant="body2" sx={{ color: 'gray' }}>
+                    {githubData.public_repos} public repos
+                </Typography>
+            </Stack>
         </Stack>
 
         {/* Right Stack */}
         <Stack
-          direction="column"
-          spacing={2}
-          sx={{ flex: '0 0 80%', maxWidth: '80%' }}
+            direction="column"
+            spacing={2}
+            sx={{ flex: '0 0 80%', maxWidth: '80%' }}
         >
-          {/* Repo Cards */}
-          <CustomCard />
-          
-          {/* Add more repo cards as needed */}
+            <Grid container spacing={2}>
+                {currentRepos.map((repo, idx) => (
+                    <Grid key={idx} item lg={6} md={6} sm={12} xs={12}>
+                        <CustomCard repo={repo} />
+                    </Grid>
+                ))}
+            </Grid>
+            <Stack sx={{ mt: { lg: '114px', xs: '70px' } }} alignItems="center">
+                {repoData.length > repoPerPage && (
+                <Pagination
+                    color="standard"
+                    shape="rounded"
+                    defaultPage={1}
+                    count={Math.ceil(repoData.length / repoPerPage)}
+                    page={currentPage}
+                    onChange={paginate}
+                    size="large"
+                />
+                )}
+            </Stack>
         </Stack>
       </Stack>
     </div>
