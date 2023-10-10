@@ -44,7 +44,7 @@ export default function Search({setGithubData,setError,setLoading}){
                     sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '6px' }, width: { lg: '1170px', xs: '350px' }  }}
                     value={search}
                     onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                    placeholder="Search Profile on GitHub"
+                    placeholder="Enter a username to find GitHub profiles"
                     type="text"
                 />
                 

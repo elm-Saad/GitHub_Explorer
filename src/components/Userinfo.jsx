@@ -5,44 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import CodeIcon from '@mui/icons-material/Code';
 import Pagination from '@mui/material/Pagination'
 import CustomCard from './CustomCard'
-/**
- * {
-    "login": "elm-Saad",
-    "id": 128216930,
-    "node_id": "U_kgDOB6RvYg",
-    "avatar_url": "https://avatars.githubusercontent.com/u/128216930?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/elm-Saad",
-    "html_url": "https://github.com/elm-Saad",
-    "followers_url": "https://api.github.com/users/elm-Saad/followers",
-    "following_url": "https://api.github.com/users/elm-Saad/following{/other_user}",
-    "gists_url": "https://api.github.com/users/elm-Saad/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/elm-Saad/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/elm-Saad/subscriptions",
-    "organizations_url": "https://api.github.com/users/elm-Saad/orgs",
-    "repos_url": "https://api.github.com/users/elm-Saad/repos",
-    "events_url": "https://api.github.com/users/elm-Saad/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/elm-Saad/received_events",
-    "type": "User",
-    "site_admin": false,
-    "name": "Saad",
-    "company": null,
-    "blog": "",
-    "location": null,
-    "email": null,
-    "hireable": null,
-    "bio": null,
-    "twitter_username": "elm_saad",
-    "public_repos": 28,
-    "public_gists": 0,
-    "followers": 0,
-    "following": 1,
-    "created_at": "2023-03-18T08:25:11Z",
-    "updated_at": "2023-10-05T20:58:20Z"
-}
- * 
- * 
- */
+
 export default  function Userinfo({githubData}) {
     const [repoData, setRepoData] = React.useState([]);
     const [currentPage, setCurrentPage] = React.useState(1)
@@ -78,6 +41,7 @@ export default  function Userinfo({githubData}) {
         spacing={2}
         alignItems="center"
         className="w-full lg:w-4/5"
+        sx={{marginBottom: '2rem'}}
       >
         {/* Left */}
         <Stack
@@ -155,7 +119,7 @@ export default  function Userinfo({githubData}) {
             <Stack sx={{ mt: { lg: '114px', xs: '70px' } }} alignItems="center">
                 {repoData.length > repoPerPage && (
                 <Pagination
-                    color="standard"
+                    color="primary"
                     shape="rounded"
                     defaultPage={1}
                     count={Math.ceil(repoData.length / repoPerPage)}
