@@ -52,7 +52,6 @@ export default  function Userinfo({githubData}) {
                 flex: '0 0 20%', 
                 maxWidth: '80%', 
                 '@media (max-width: 600px)': {
-                    flex: '0 0 35%', 
                     maxWidth: '80%', 
                 },
                 '@media (min-width: 1280px)': {
@@ -107,12 +106,24 @@ export default  function Userinfo({githubData}) {
         <Stack
             direction="column"
             spacing={2}
-            sx={{ flex: '0 0 80%', maxWidth: '80%' }}
+            sx={{ 
+
+                // flex: '0 0 80%', maxWidth: '80%' 
+                flex: '0 0 20%', 
+                maxWidth: '80%', 
+                '@media (min-width: 1280px)': {
+                    flex: '0 0 80%', 
+                },
+            }}
         >
-            <Grid container spacing={2}>
+            <Grid container spacing={1} >
                 {currentRepos.map((repo, idx) => (
-                    <Grid key={idx} item lg={6} md={6} sm={12} xs={12}>
-                        <CustomCard repo={repo} />
+                    <Grid 
+                        key={idx} item lg={6} md={6} sm={12} xs={12}
+                        sx={{  paddingLeft: {
+                            xs: '0px !important',
+                          } }}>
+                        <CustomCard  repo={repo} />
                     </Grid>
                 ))}
             </Grid>

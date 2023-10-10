@@ -24,7 +24,12 @@ function CustomCard({repo}) {
         borderRadius: '6px',
         minWidth: 275,
         backgroundColor: 'white',
-        margin: '16px',
+        '@media (max-width: 895px)': {
+          margin: '12px 0'
+        },
+        '@media (min-width: 896px)': {
+          margin: '12px'
+        },
       }}
     >
       <CardContent>
@@ -41,14 +46,14 @@ function CustomCard({repo}) {
         >
             <Typography
                 variant="h6"
-                sx={{ color: '#0969da', textTransform: 'capitalize' }}
-            >
+                sx={{ color: '#0969da', textTransform: 'capitalize', fontSize: '1rem' }}
+                >
                 {repo.name}
             </Typography>
         </a>
           {/* Badge */}
-          <div className="bg-white border-gray-300 border rounded-full py-1 px-3">
-            <Typography variant="body2" sx={{ color: 'gray' }}>
+          <div className="bg-white border-gray-300 border rounded-full py-0.5 px-2">
+            <Typography variant="body2" sx={{ color: 'gray', fontSize: '0.75rem' }}>
               {repo.visibility}
             </Typography>
           </div>
