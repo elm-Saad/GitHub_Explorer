@@ -66,7 +66,7 @@ export default  function Userinfo({githubData}) {
     const indexOfFirstRepo = indexOfLastRepo - repoPerPage;
     const currentRepos = repoData.slice(indexOfFirstRepo, indexOfLastRepo);
 
-    const paginate = (event, value) => {
+    const paginate = (e, value) => {
         setCurrentPage(value);
     }
 
@@ -79,12 +79,23 @@ export default  function Userinfo({githubData}) {
         alignItems="center"
         className="w-full lg:w-4/5"
       >
-        {/* Left Stack */}
+        {/* Left */}
         <Stack
             direction="column"
             alignItems="center"
             spacing={2}
-            sx={{ flex: '0 0 20%', maxWidth: '20%' }}
+            sx={{
+                flex: '0 0 20%', 
+                maxWidth: '80%', 
+                '@media (max-width: 600px)': {
+                    flex: '0 0 35%', 
+                    maxWidth: '80%', 
+                },
+                '@media (min-width: 1280px)': {
+                    flex: '0 0 20%', 
+                    maxWidth: '20%',
+                },
+            }}
         >
             <Avatar alt={githubData.name} src={githubData.avatar_url} sx={{ width: '100%', height: 'auto', border:'3px solid white ' }} />
             <Typography variant="h6" sx={{ fontWeight: 600, alignSelf: 'flex-start' }}>
@@ -128,7 +139,7 @@ export default  function Userinfo({githubData}) {
             </Stack>
         </Stack>
 
-        {/* Right Stack */}
+        {/* Right */}
         <Stack
             direction="column"
             spacing={2}

@@ -9,12 +9,6 @@ export default function Search({setGithubData,setError,setLoading}){
         if (search) {
             setLoading(true)
             setError(null)
-        //   const searchedExercises = exercisesData.filter(
-        //     (item) => item.name.toLowerCase().includes(search)
-        //            || item.target.toLowerCase().includes(search)
-        //            || item.equipment.toLowerCase().includes(search)
-        //            || item.bodyPart.toLowerCase().includes(search),
-        //   )
             try {
                 const response = await fetch(`https://api.github.com/users/${search}`);
                 if (!response.ok) {
@@ -28,7 +22,6 @@ export default function Search({setGithubData,setError,setLoading}){
             } finally {
                 setLoading(false)
             }
-        
         }
     
         
