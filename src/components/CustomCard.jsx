@@ -72,11 +72,13 @@ function CustomCard({repo}) {
           {repo.description}
         </Typography>
         <Grid container spacing={1}>
-            {/* {Object.keys(lang).map((language, index) => ( */}
+            {
+            Object.keys(lang).map((language, index) => (
                 <Grid item  >
                     <Languages text={repo.language} />
                 </Grid>
-            {/* ))} */}
+             ))
+            }
         </Grid>
       </CardContent>
     </Card>
