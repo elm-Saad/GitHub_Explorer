@@ -4,20 +4,19 @@ import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined'
 import Languages from './Languages'
 function CustomCard({repo}) {
   // => fetch to get all Languages used foreach repo
-  const [lang,setLangData] = React.useState({})
-  const fetchData = async () => {
-    try {
-      const response = await fetch(repo.languages_url)
-      const result = await response.json()
-      setLangData(result)
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
-  }
-  React.useEffect(() => {
-      fetchData()
-  }, [])
-  /** */
+  // const [lang,setLangData] = React.useState({})
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(repo.languages_url)
+  //     const result = await response.json()
+  //     setLangData(result)
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error)
+  //   }
+  // }
+  // React.useEffect(() => {
+  //     fetchData()
+  // }, [])
   return (
     <Card
         className='bg-white border-gray-300 border'
@@ -72,13 +71,11 @@ function CustomCard({repo}) {
           {repo.description}
         </Typography>
         <Grid container spacing={1}>
-            {
-            Object.keys(lang).map((language, index) => (
+            {/* {Object.keys(lang).map((language, index) => ( */}
                 <Grid item  >
                     <Languages text={repo.language} />
                 </Grid>
-             ))
-            }
+            {/* ))} */}
         </Grid>
       </CardContent>
     </Card>
